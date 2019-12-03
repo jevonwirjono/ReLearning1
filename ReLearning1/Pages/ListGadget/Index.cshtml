@@ -1,0 +1,69 @@
+﻿@page
+@model ReLearning1.Pages.ListGadget.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">
+            List Of Gadgets
+        </h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="Upsert" class="btn btn-info form-control text-white">
+            Insert New Gadgets
+        </a>
+    </div>
+
+    <div class="col-12 border p-2 m-3">
+        <form method="post">
+            @if (Model.Gadgets.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label asp-for="Gadgets.FirstOrDefault().Name"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Gadgets.FirstOrDefault().Brand"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Gadgets.FirstOrDefault().Year">
+
+                            </label>
+                        </th>
+                        <th>
+                            <label asp-for="Gadgets.FirstOrDefault().Price"></label>
+                        </th>
+                    </tr>
+                    @foreach(var items in Model.Gadgets)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m=>items.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m=>items.Brand)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m=>items.Year)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m=>items.Price)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+               <h3> No Information Available</h3>
+            }
+        </form>
+    </div>
+
+</div>
+
